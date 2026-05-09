@@ -436,7 +436,7 @@
     }
   
     .app-header {
-      flex-direction: column;
+      flex-direction: column-reverse;
       align-items: stretch;
       gap: 12px;
     }
