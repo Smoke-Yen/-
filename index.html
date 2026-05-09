@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>三件好事｜好好熊陪你</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+
+<body>
+  <div class="background-deco deco-1"></div>
+  <div class="background-deco deco-2"></div>
+  <div class="background-deco deco-3"></div>
+
+  <div class="app-container">
+
+    <!-- 歡迎頁 -->
+    <section id="welcomePage" class="page welcome-page">
+      <div class="welcome-card">
+        <div class="bear-big">🧸</div>
+        <p class="tag">每日幸福感紀錄平台</p>
+        <h1>三件好事</h1>
+        <h2>好好熊陪你</h2>
+        <p class="welcome-text">
+          好好生活，<br />
+          好好照顧自己，<br />
+          好好接住你的心情!
+        </p>
+        <button id="startBtn" class="main-btn">開始今天的幸福練習</button>
+      </div>
+    </section>
+
+    <!-- App 主畫面 -->
+    <section id="appPage" class="page hidden">
+
+      <header class="app-header">
+        <div>
+          <p class="tag">好好熊陪伴中</p>
+          <h1 id="pageTitle">三件好事</h1>
+          <p id="pageSubtitle" class="subtitle">
+            記錄今天的小小幸福，也溫柔接住自己的心情。
+          </p>
+        </div>
+        <div class="header-controls">
+          <div class="music-player">
+            <button id="musicToggleBtn" class="music-btn" type="button">🎵</button>
+            <select id="musicSelect" class="music-select" aria-label="背景音樂選擇">
+              <option value="Late Night Pages.mp3">療癒純樂 1</option>
+              <option value="Little Sunroom.mp3">療癒純樂 2</option>
+            </select>
+          </div>
+          <div class="bear-small">🧸</div>
+        </div>
+      </header>
+
+      <!-- 首頁內容 -->
+      <main id="homeSection" class="content-section">
+        <section class="card">
+          <h2>嗨，今天也辛苦了!</h2>
+          <p class="normal-text">
+            好好熊想陪你一起記錄今天的小小幸福。趕快來寫下三件好事、
+            和好好熊說說心裡話，或回顧最近的幸福感變化吧~吧~
+          </p>
+
+          <div class="home-grid">
+            <button class="feature-card" data-target="goodThingsSection">
+              <span>📝</span>
+              <strong>三件好事</strong>
+              <p>記錄今天值得感謝的三件事。</p>
+            </button>
+
+            <button class="feature-card" data-target="chatSection">
+              <span>🧸</span>
+              <strong>好好熊陪聊</strong>
+              <p>把今天的心情悄悄說出來。</p>
+            </button>
+
+            <button class="feature-card" data-target="reviewSection">
+              <span>📖</span>
+              <strong>幸福回顧</strong>
+              <p>看看近期的幸福感整理。</p>
+            </button>
+
+            <button class="feature-card" data-target="settingsSection">
+              <span>⚙️</span>
+              <strong>個人設定</strong>
+              <p>調整暱稱與介面風格。</p>
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <!-- 三件好事頁 -->
+      <main id="goodThingsSection" class="content-section hidden">
+        <section class="card">
+            <div id="todayInfo" class="today-info"></div>
+
+            <section class="intro-box">
+              <h2>今天的幸福練習</h2>
+            <p>
+              請寫下今天發生的三件好事。它們不需要很巨大，
+              可能是一杯好喝的飲料、一句溫暖的話，或是你努力完成的小任務!
+            </p>
+          </section>
+
+          <form id="goodThingsForm">
+            <label for="recordDate">紀錄日期</label>
+            <input type="date" id="recordDate" />
+            <p class="form-hint">
+                如果今天是補寫之前的三件好事，可以在這裡選擇當天的日期。
+            </p>
+
+            <label for="good1">第一件好事</label>
+            <input type="text" id="good1" placeholder="例如：今天朋友請我喝飲料" />
+            <div class="perma-chips" role="radiogroup" aria-label="第一件好事的 PERMA 分類">
+              <div class="perma-chips-row">
+                <input type="radio" name="perma-good1" id="perma-good1-P" value="P" class="perma-chip-input" />
+                <label for="perma-good1-P" class="perma-chip-label"><span class="perma-letter">P</span> 正向情緒</label>
+                <input type="radio" name="perma-good1" id="perma-good1-E" value="E" class="perma-chip-input" />
+                <label for="perma-good1-E" class="perma-chip-label"><span class="perma-letter">E</span> 全情投入</label>
+                <input type="radio" name="perma-good1" id="perma-good1-R" value="R" class="perma-chip-input" />
+                <label for="perma-good1-R" class="perma-chip-label"><span class="perma-letter">R</span> 正向關係</label>
+                <input type="radio" name="perma-good1" id="perma-good1-M" value="M" class="perma-chip-input" />
+                <label for="perma-good1-M" class="perma-chip-label"><span class="perma-letter">M</span> 生命意義</label>
+                <input type="radio" name="perma-good1" id="perma-good1-A" value="A" class="perma-chip-input" />
+                <label for="perma-good1-A" class="perma-chip-label"><span class="perma-letter">A</span> 成就感</label>
+              </div>
+            </div>
+
+            <label for="good2">第二件好事</label>
+            <input type="text" id="good2" placeholder="例如：報告終於完成一部分" />
+            <div class="perma-chips" role="radiogroup" aria-label="第二件好事的 PERMA 分類">
+              <div class="perma-chips-row">
+                <input type="radio" name="perma-good2" id="perma-good2-P" value="P" class="perma-chip-input" />
+                <label for="perma-good2-P" class="perma-chip-label"><span class="perma-letter">P</span> 正向情緒</label>
+                <input type="radio" name="perma-good2" id="perma-good2-E" value="E" class="perma-chip-input" />
+                <label for="perma-good2-E" class="perma-chip-label"><span class="perma-letter">E</span> 全情投入</label>
+                <input type="radio" name="perma-good2" id="perma-good2-R" value="R" class="perma-chip-input" />
+                <label for="perma-good2-R" class="perma-chip-label"><span class="perma-letter">R</span> 正向關係</label>
+                <input type="radio" name="perma-good2" id="perma-good2-M" value="M" class="perma-chip-input" />
+                <label for="perma-good2-M" class="perma-chip-label"><span class="perma-letter">M</span> 生命意義</label>
+                <input type="radio" name="perma-good2" id="perma-good2-A" value="A" class="perma-chip-input" />
+                <label for="perma-good2-A" class="perma-chip-label"><span class="perma-letter">A</span> 成就感</label>
+              </div>
+            </div>
+
+            <label for="good3">第三件好事</label>
+            <input type="text" id="good3" placeholder="例如：晚上看到很漂亮的夕陽" />
+            <div class="perma-chips" role="radiogroup" aria-label="第三件好事的 PERMA 分類">
+              <div class="perma-chips-row">
+                <input type="radio" name="perma-good3" id="perma-good3-P" value="P" class="perma-chip-input" />
+                <label for="perma-good3-P" class="perma-chip-label"><span class="perma-letter">P</span> 正向情緒</label>
+                <input type="radio" name="perma-good3" id="perma-good3-E" value="E" class="perma-chip-input" />
+                <label for="perma-good3-E" class="perma-chip-label"><span class="perma-letter">E</span> 全情投入</label>
+                <input type="radio" name="perma-good3" id="perma-good3-R" value="R" class="perma-chip-input" />
+                <label for="perma-good3-R" class="perma-chip-label"><span class="perma-letter">R</span> 正向關係</label>
+                <input type="radio" name="perma-good3" id="perma-good3-M" value="M" class="perma-chip-input" />
+                <label for="perma-good3-M" class="perma-chip-label"><span class="perma-letter">M</span> 生命意義</label>
+                <input type="radio" name="perma-good3" id="perma-good3-A" value="A" class="perma-chip-input" />
+                <label for="perma-good3-A" class="perma-chip-label"><span class="perma-letter">A</span> 成就感</label>
+              </div>
+            </div>
+
+
+            <button type="submit" class="main-btn">送出今日紀錄</button>
+          </form>
+        </section>
+
+        <section id="resultSection" class="result-card hidden">
+          <h2>今日幸福感回顧</h2>
+          <div id="resultContent"></div>
+        </section>
+      </main>
+
+      <!-- 好好熊陪聊頁 -->
+      <main id="chatSection" class="content-section hidden">
+        <section class="card">
+          <h2>🧸 好好熊悄悄話時間</h2>
+          <p class="normal-text">
+            今天有什麼想跟好好熊說的嗎？可以寫下你的壓力、煩惱、開心的事，
+            或任何不想自己悶著的心情。
+          </p>
+
+          <form id="chatForm">
+            <label for="chatInput">今天想說的話</label>
+            <textarea
+              id="chatInput"
+              rows="8"
+              placeholder="例如：我今天有點焦慮，覺得事情好多，好怕自己做不好……"
+            ></textarea>
+
+            <button type="submit" class="main-btn">送給好好熊</button>
+          </form>
+        </section>
+
+        <section id="chatResultSection" class="result-card hidden">
+          <h2>好好熊的回覆</h2>
+          <div id="chatResultContent"></div>
+        </section>
+      </main>
+
+      <!-- 幸福回顧頁 -->
+ <!-- 幸福回顧頁 -->
+<main id="reviewSection" class="content-section hidden">
+    <section class="card">
+      <h2>📖 幸福回顧</h2>
+      <p class="normal-text">
+        這裡會整理你填寫過的三件好事紀錄，讓你看見生活中累積下來的小小幸福。
+      </p>
+
+      <canvas id="permaChart"></canvas>
+  
+      <div id="reviewContent" class="review-box">
+        <p>目前還沒有紀錄。完成一次三件好事後，這裡就會出現你的幸福回顧。</p>
+      </div>
+  
+      <button id="clearRecordsBtn" class="main-btn secondary-btn" type="button">
+        清除全部紀錄
+      </button>
+    </section>
+  </main>
+
+      <!-- 個人設定頁 -->
+      <main id="settingsSection" class="content-section hidden">
+        <section class="card">
+          <h2>⚙️ 個人設定</h2>
+          <p class="normal-text">
+            這裡可以設定你的暱稱、喜歡的介面風格，以及好好熊的陪伴語氣。
+          </p>
+
+          <form id="settingsForm">
+            <label for="nickname">你的暱稱</label>
+            <input type="text" id="nickname" placeholder="例如：小熊" />
+
+            <label for="themeSelect">喜歡的介面風格</label>
+            <select id="themeSelect">
+              <option value="pink">溫柔粉</option>
+              <option value="blue">天空藍</option>
+              <option value="green">森林綠</option>
+              <option value="brown">奶茶棕</option>
+            </select>
+
+            <label for="toneSelect">好好熊的說話風格</label>
+            <select id="toneSelect">
+              <option value="soft">溫柔陪伴</option>
+              <option value="clear">理性整理</option>
+              <option value="bright">活潑鼓勵</option>
+            </select>
+
+            <button type="submit" class="main-btn">儲存設定</button>
+          </form>
+
+          <p id="settingsMessage" class="settings-message hidden">
+            設定已儲存，好好熊會記得你的偏好。
+          </p>
+        </section>
+      </main>
+
+      <!-- 底部導覽列 -->
+      <nav class="bottom-nav">
+        <button class="nav-btn active" data-target="goodThingsSection">
+          <span>📝</span>
+          三件好事
+        </button>
+        <button class="nav-btn" data-target="chatSection">
+          <span>🧸</span>
+          悄悄話時間
+        </button>
+        <button class="nav-btn" data-target="reviewSection">
+          <span>📖</span>
+          幸福回顧
+        </button>
+        <button class="nav-btn" data-target="settingsSection">
+          <span>⚙️</span>
+          個人設定
+        </button>
+      </nav>
+
+    </section>
+  </div>
+
+  <audio id="bgmAudio" loop></audio>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
