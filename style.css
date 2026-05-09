@@ -326,22 +326,34 @@
     box-shadow: 0 0 0 4px rgba(213, 140, 177, 0.15);
   }
 
-  /* 日期欄位在 iOS / Android WebKit 常有內建 min-width，外觀會比文字框略寬 */
+  /* iOS Safari：日期欄位預設外觀常讓寬高與 text input 不一致，拉齊為同一套外框 */
   input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    margin: 0;
     box-sizing: border-box;
   }
 
-  input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+  input[type="date"]::-webkit-date-and-time-value {
+    text-align: left;
+  }
+
   input[type="date"]::-webkit-datetime-edit {
+    padding: 0;
     min-width: 0;
   }
 
+  input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+
   input[type="date"]::-webkit-calendar-picker-indicator {
-    margin-left: 0;
-    flex-shrink: 0;
+    margin-left: 4px;
+    opacity: 0.75;
   }
   
   .main-btn {
@@ -530,13 +542,6 @@
       font-size: 12px;
       max-width: 110px;
       padding: 2px 0;
-    }
-
-    /* flex 子項預設 min-width: auto，配合日期欄 WebKit 內建寬度易導致略寬於文字框 */
-    form input,
-    form textarea,
-    form select {
-      min-width: 0;
     }
   
     .home-grid {
